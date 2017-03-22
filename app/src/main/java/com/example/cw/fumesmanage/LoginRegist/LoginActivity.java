@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.cw.fumesmanage.MainActivity;
+import com.example.cw.fumesmanage.MainPage.MainActivity;
 import com.example.cw.fumesmanage.R;
 import com.example.cw.fumesmanage.SetBarColor;
 
