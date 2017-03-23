@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
+import com.example.cw.fumesmanage.MainPage.MainListview.ListFragment;
+
 /**
  * Created by cw on 2017/3/22.
  */
