@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPage.MainActivity">
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:id="@+id/ly_top_bar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/colorWithe">
+        android:background="@color/colorGreen">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,15 +23,15 @@
             android:layout_below="@+id/LLbar"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="油烟检测系统"
-            android:textColor="@color/colorBlack"
+            android:text="合心源油烟在线监测系统"
+            android:textColor="@color/colorWithe"
             android:textSize="18sp" />
 
         <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="2px"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:background="@color/colorWithe" />-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2px"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@color/colorWithe" />-->
 
     </RelativeLayout>
 

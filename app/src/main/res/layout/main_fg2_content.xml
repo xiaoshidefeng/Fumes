@@ -3,13 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/id_LLtwo">
 
-
-    <com.amap.api.maps2d.MapView
+    <TextView
+        android:id="@+id/txt_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/map"></com.amap.api.maps2d.MapView>
-
+        android:gravity="center"
+        android:text="呵呵"
+        android:textColor="@color/text_yellow"
+        android:textSize="20sp" />
 
 </LinearLayout>
