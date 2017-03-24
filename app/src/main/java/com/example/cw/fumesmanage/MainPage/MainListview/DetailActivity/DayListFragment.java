@@ -11,6 +11,8 @@ import android.widget.ListView;
 import com.example.cw.fumesmanage.MainPage.MainListview.MainAdapter;
 import com.example.cw.fumesmanage.MainPage.MainListview.MainItemBean;
 import com.example.cw.fumesmanage.R;
+import com.example.cw.fumesmanage.Tools.ChartDataMaker;
+import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ public class DayListFragment extends Fragment {
     private List<MainItemBean> itemBeen = new ArrayList<>();
 
     private ListView listView;
+
+    private LineChart mLineChart;
 
 
     private String[] s = {"微软","alibaba","腾讯","Baidu","微软","alibaba","腾讯","Baidu","腾讯","Baidu"
@@ -59,6 +63,14 @@ public class DayListFragment extends Fragment {
 
         MainAdapter myAdapter = new MainAdapter(getContext(),itemBeen);
         listView.setAdapter(myAdapter);
+        chartMake();
+
+    }
+
+    private void chartMake() {
+        ChartDataMaker cdm = new ChartDataMaker();
+        mLineChart = (LineChart)getActivity().findViewById(R.id.id_Daychart);
+        cdm.makeChart(mLineChart);
     }
 
 }
