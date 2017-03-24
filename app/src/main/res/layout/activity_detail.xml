@@ -16,13 +16,13 @@
             android:id="@+id/LLbar"></LinearLayout>
 
         <TextView
-            android:id="@+id/txt_topbar"
+            android:id="@+id/id_detail_txt_topbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/LLbar"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="合心源油烟在线监测系统"
+            android:text="信息查看"
             android:textColor="@color/colorWithe"
             android:textSize="18sp" />
 
@@ -44,22 +44,34 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/rb_map"
+            android:id="@+id/rb_msg"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_map"
-            android:text="地图" />
+            android:drawableTop="@drawable/tab_menu_msg"
+            android:text="信息" />
 
         <RadioButton
-            android:id="@+id/rb_list"
+            android:id="@+id/rb_day"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_list"
-            android:text="列表" />
+            android:drawableTop="@drawable/tab_menu_chart"
+            android:text="当天" />
 
         <RadioButton
-            android:id="@+id/rb_me"
+            android:id="@+id/rb_month"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_menu_me"
-            android:text="我的" />
+            android:drawableTop="@drawable/tab_menu_chart"
+            android:text="当月" />
+
+        <RadioButton
+            android:id="@+id/rb_abnormal"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/tab_menu_deal"
+            android:text="异常" />
+
+        <RadioButton
+            android:id="@+id/rb_onstie"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/tab_menu_camera"
+            android:text="现场" />
 
 
     </RadioGroup>

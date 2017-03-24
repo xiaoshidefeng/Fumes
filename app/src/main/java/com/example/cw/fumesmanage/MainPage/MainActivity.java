@@ -7,7 +7,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.cw.fumesmanage.R;
-import com.example.cw.fumesmanage.SetBarColor;
+import com.example.cw.fumesmanage.Tools.SetBarColor;
 
 public class MainActivity extends AppCompatActivity {
 

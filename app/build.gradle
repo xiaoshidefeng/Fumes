@@ -29,6 +29,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile files('libs/AMap2DMap_4.2.0_AMapSearch_4.0.0_AMapLocation_3.3.0_20170120.jar')
+
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+
 }
 
 

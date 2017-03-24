@@ -1,4 +1,4 @@
-package com.example.cw.fumesmanage;
+package com.example.cw.fumesmanage.Tools;
 
 import android.app.Activity;
 import android.os.Build;
