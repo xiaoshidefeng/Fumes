@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by cw on 2017/3/24.
+ * 生成假表格及数据
  */
 
 public class ChartDataMaker {
@@ -133,7 +134,7 @@ public class ChartDataMaker {
 
         // create a dataset and give it a type
         // y轴的数据集合
-        LineDataSet lineDataSet = new LineDataSet(yValues, "油烟实时检测图" /*显示在比例图上*/);
+        LineDataSet lineDataSet = new LineDataSet(yValues, "油烟检测图" /*显示在比例图上*/);
         // mLineDataSet.setFillAlpha(110);
         // mLineDataSet.setFillColor(Color.RED);
 
