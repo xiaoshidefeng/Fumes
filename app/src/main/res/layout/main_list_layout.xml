@@ -8,14 +8,14 @@
         <!--android:id="@+id/id_refreshtwo"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
-        <ListView
-            android:id="@+id/id_MainListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:divider="@color/colorGreen"
-            android:dividerHeight="2px"
-            ></ListView>
+    <ListView
+        android:id="@+id/id_MainListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:divider="@color/colorGreen"
+        android:dividerHeight="2px"
+        ></ListView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 
 </LinearLayout>

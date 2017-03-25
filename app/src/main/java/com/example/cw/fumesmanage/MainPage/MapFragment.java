@@ -55,14 +55,15 @@ public class MapFragment extends android.support.v4.app.Fragment {
                 ((ViewGroup) mapLayout.getParent()).removeView(mapLayout);
             }
         }
-
+        float f = 28.463f;
         for(int i = 18 ;i<27;i++){
 
-            LatLng latLng = new LatLng(i,119.397972);
+
+            LatLng latLng = new LatLng(f+=0.1,119.9);
             Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("title").snippet("message"));
         }
 
-        LatLng latLng2 = new LatLng(28.006901,120.397972);
+        LatLng latLng2 = new LatLng(28.463,119.909);
 
         Marker marker2 = aMap.addMarker(new MarkerOptions()
                 .position(latLng2).title("title").snippet("message")

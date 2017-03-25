@@ -26,7 +26,6 @@ public class AbNormalAdapter extends BaseAdapter{
 
     private LayoutInflater mInflater;
 
-    AbNormalBean bean;
 
     public AbNormalAdapter(Context context, List<AbNormalBean> list){
         mList = list;
@@ -50,7 +49,7 @@ public class AbNormalAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
 
 
         viewHolder = null;
@@ -70,7 +69,7 @@ public class AbNormalAdapter extends BaseAdapter{
         }
 
 
-        bean = mList.get(i);
+        final AbNormalBean bean = mList.get(i);
         viewHolder.title.setText(bean.ItemTitle);
         viewHolder.value.setText(bean.ItemValue);
 

@@ -27,7 +27,7 @@ public class MainAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
 
-    MainItemBean bean;
+//    private ;
 
     public MainAdapter(Context context, List<MainItemBean> list){
         mList = list;
@@ -51,7 +51,7 @@ public class MainAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
 
 
         viewHolder = null;
@@ -71,7 +71,7 @@ public class MainAdapter extends BaseAdapter {
         }
 
 
-        bean = mList.get(i);
+        final MainItemBean bean = mList.get(i);
         viewHolder.title.setText(bean.ItemTitle);
         viewHolder.value.setText(bean.ItemValue);
 
@@ -84,6 +84,8 @@ public class MainAdapter extends BaseAdapter {
                 editor.putString("title",bean.ItemTitle);
                 editor.putString("value",bean.ItemValue);
                 editor.commit();
+
+//                Toast.makeText(view.getContext(),bean.ItemTitle,Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
                 view.getContext().startActivity(intent);
