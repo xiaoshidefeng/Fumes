@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWithe"
+    android:orientation="vertical">
+
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="处理说明..."
+            android:textColorHint="@color/text_gray"
+            android:gravity="top"
+            android:id="@+id/id_etfeedbackcontent"
+            android:textColor="@color/colorBlack"
+            android:background="@null"
+            />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/id_ImgOnSite"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="拍照"
+            android:id="@+id/id_BtnTakePhoto"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="上传"
+            android:id="@+id/id_BtnUpPhoto"/>
+    </LinearLayout>
+
+    <!--</ScrollView>-->
+</LinearLayout>

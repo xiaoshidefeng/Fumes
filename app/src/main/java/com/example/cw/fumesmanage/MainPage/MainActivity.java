@@ -1,10 +1,13 @@
-package com.example.cw.fumesmanage;
+package com.example.cw.fumesmanage.MainPage;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.example.cw.fumesmanage.R;
+import com.example.cw.fumesmanage.Tools.SetBarColor;
 
 public class MainActivity extends AppCompatActivity {
 

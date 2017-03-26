@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWithe">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:divider="@color/colorGreen"
+        android:dividerHeight="2px"
+        android:id="@+id/id_LVmonth"></ListView>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/id_Monthchart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
