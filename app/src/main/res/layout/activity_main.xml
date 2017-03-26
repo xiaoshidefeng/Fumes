@@ -12,15 +12,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
             android:orientation="vertical"
-            android:id="@+id/LLbar"></LinearLayout>
+            android:id="@+id/id_postTops">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/id_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreen"
+                android:fitsSystemWindows="true" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txt_topbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/LLbar"
+            android:layout_below="@+id/id_postTops"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="合心源油烟在线监测系统"

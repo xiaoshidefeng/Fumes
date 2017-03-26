@@ -11,20 +11,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
             android:orientation="vertical"
-            android:id="@+id/LLbar"></LinearLayout>
-
-        <TextView
-            android:id="@+id/id_detail_txt_topbar"
+            android:id="@+id/id_postTops">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/id_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreen"
+                android:fitsSystemWindows="true" />
+        </LinearLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/LLbar"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="信息查看"
-            android:textColor="@color/colorWithe"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_postTops">
+            <ImageView
+                android:id="@+id/id_back"
+                style="@style/back_btn" />
+
+            <TextView
+                android:id="@+id/id_detail_txt_topbar"
+                style="@style/title_text"
+                android:text="信息查看" />
+        </RelativeLayout>
 
         <!--<View-->
         <!--android:layout_width="match_parent"-->

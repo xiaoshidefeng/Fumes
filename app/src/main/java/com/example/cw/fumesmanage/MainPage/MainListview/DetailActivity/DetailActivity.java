@@ -3,6 +3,8 @@ package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     private RadioButton rbUnNormal;
     private RadioButton rbOnSite;
 
+    private ImageView imgBack;
 
     private ViewPager vpager;
 
@@ -57,6 +60,14 @@ public class DetailActivity extends AppCompatActivity {
         rbMonthListChart = (RadioButton)findViewById(R.id.rb_month);
         rbUnNormal = (RadioButton)findViewById(R.id.rb_abnormal);
         rbOnSite = (RadioButton)findViewById(R.id.rb_onstie);
+        imgBack = (ImageView)findViewById(R.id.id_back);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         rgTabBar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

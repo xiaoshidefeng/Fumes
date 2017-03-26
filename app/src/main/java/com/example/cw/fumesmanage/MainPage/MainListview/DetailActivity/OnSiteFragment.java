@@ -1,6 +1,7 @@
 package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.cw.fumesmanage.R;
 
@@ -31,6 +34,10 @@ public class OnSiteFragment extends Fragment {
     private ImageView img;
     private Button take_picture;
 
+    private Button btnUpDate;
+
+    private EditText editText;
+
     public OnSiteFragment(){
 
     }
@@ -40,12 +47,29 @@ public class OnSiteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         img=(ImageView)getActivity().findViewById(R.id.id_ImgOnSite);
         take_picture=(Button)getActivity().findViewById(R.id.id_BtnTakePhoto);
+        btnUpDate=(Button)getActivity().findViewById(R.id.id_BtnUpPhoto);
+        editText = (EditText)getActivity().findViewById(R.id.id_etfeedbackcontent);
+
 
         take_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 startActivityForResult(intent, Activity.DEFAULT_KEYS_DIALER);
+            }
+        });
+
+        btnUpDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = editText.getText().toString();
+                if(s==null||s.equals("")){
+                    Toast.makeText(getContext(),"请输入处理说明",Toast.LENGTH_SHORT).show();
+
+                }else {
+                    showDi();
+                }
+
             }
         });
     }
@@ -100,5 +124,35 @@ public class OnSiteFragment extends Fragment {
                 }
             }//finally
         }
+    }
+
+
+    private void showDi(){
+        final ProgressDialog dialog = ProgressDialog.show(
+                getActivity(), "正在上传...", "请耐心等待...");// 之所以用final定义，主要目的是为了让内部类可以访问方法中定义的参数。
+        new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+
+                    //开启ui线程
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getContext(),"上传完成",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } finally {
+                    dialog.dismiss();
+
+                }
+
+            };
+        }.start();
     }
 }
