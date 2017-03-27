@@ -79,8 +79,9 @@ public class AbNormalAdapter extends BaseAdapter{
                 new AlertDialog.Builder(view.getContext())
                         //.setIcon(R.drawable.icon)
                         .setTitle("处理")
-                        .setMessage("是否要处理"+bean.ItemTitle+"\n油烟值："+bean.ItemValue)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener(){
+                        .setMessage("是否处理"+bean.ItemTitle+"\n油烟值："+bean.ItemValue)
+                        .setNegativeButton("不处理",null)
+                        .setPositiveButton("处理", new DialogInterface.OnClickListener(){
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
