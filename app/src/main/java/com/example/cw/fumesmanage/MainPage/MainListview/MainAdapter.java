@@ -3,6 +3,7 @@ package com.example.cw.fumesmanage.MainPage.MainListview;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,9 +62,11 @@ public class MainAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.main_list_item,null);
 
 
-            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemTitle);
-            viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemContent);
+            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemName);
+            viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemValue);
             viewHolder.rl = (RelativeLayout)view.findViewById(R.id.id_RLmainListView);
+
+
 
             view.setTag(viewHolder);
         }else {
@@ -74,6 +77,17 @@ public class MainAdapter extends BaseAdapter {
         final MainItemBean bean = mList.get(i);
         viewHolder.title.setText(bean.ItemTitle);
         viewHolder.value.setText(bean.ItemValue);
+
+        /**
+         * 判断数值是否正常 正常显示绿色 不正常显示红色
+         * list 里面要传入两个value 一个用于显示 一个用于判断
+         */
+
+        if (bean.getId() > 2){
+            viewHolder.value.setTextColor(Color.RED);
+        }else {
+            viewHolder.value.setTextColor(Color.rgb(0,153,0));
+        }
 
         viewHolder.rl.setOnClickListener(new View.OnClickListener() {
             @Override

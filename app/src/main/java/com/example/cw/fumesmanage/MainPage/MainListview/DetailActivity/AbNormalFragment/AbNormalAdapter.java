@@ -59,8 +59,8 @@ public class AbNormalAdapter extends BaseAdapter{
             view = mInflater.inflate(R.layout.main_list_item,null);
 
 
-            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemTitle);
-            viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemContent);
+            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemName);
+            viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemValue);
             viewHolder.rl = (RelativeLayout)view.findViewById(R.id.id_RLmainListView);
 
             view.setTag(viewHolder);

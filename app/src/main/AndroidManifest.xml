@@ -39,6 +39,9 @@
         </meta-data>
 
         <activity android:name=".MainPage.MainListview.DetailActivity.DetailActivity"></activity>
+
+        <service android:name="com.amap.api.location.APSService"></service>
+
     </application>
 
 </manifest>
