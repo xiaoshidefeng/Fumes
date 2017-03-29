@@ -6,9 +6,12 @@ import android.os.Message;
 import android.util.Log;
 
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
+import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
+import com.example.cw.fumesmanage.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,13 +30,14 @@ import java.util.List;
 
 public class NetWorkMap {
     private URL url;
-    private List<LatLng> listLatLng = new ArrayList<>();
+    private List<MapBean> listMapBeanList = new ArrayList<>();
     private AMap aMap;
     private Context context;
+    private JSONArray jsonArray;
 
-    public NetWorkMap(URL url, List<LatLng> listLatLng, AMap aMap, Context context) {
+    public NetWorkMap(URL url, List<MapBean> listMapBeanList, AMap aMap, Context context) {
         this.url = url;
-        this.listLatLng = listLatLng;
+        this.listMapBeanList = listMapBeanList;
         this.aMap = aMap;
         this.context = context;
     }
@@ -50,11 +54,24 @@ public class NetWorkMap {
         @Override
         public void handleMessage(Message msg) {
 
-            for (LatLng l: NetWorkMap.this.listLatLng) {
-                Marker marker = NetWorkMap.this.aMap.addMarker(new MarkerOptions()
-                        .position(l).title("title").snippet("message"));
+            for (MapBean m: NetWorkMap.this.listMapBeanList) {
+                LatLng l = m.latLng;
+                if(m.value<2.0){
+                    Marker marker = NetWorkMap.this.aMap.addMarker(new MarkerOptions()
+                            .position(l).title(m.id + "").snippet("message")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.green2d)));
+                }else {
+                    Marker marker = NetWorkMap.this.aMap.addMarker(new MarkerOptions()
+                            .position(l).title(m.id + "").snippet("message")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.red2d)));
+                }
+
             }
 
+            //设置中心点和缩放比例
+            NetWorkMap.this.aMap.moveCamera(CameraUpdateFactory.changeLatLng(
+                    NetWorkMap.this.listMapBeanList.get(jsonArray.length()-1).latLng));
+            NetWorkMap.this.aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         }
     };
 
@@ -93,7 +110,7 @@ public class NetWorkMap {
                         response.append(line);
                     }
 
-                    JSONArray jsonArray = new JSONArray(response.toString());
+                    jsonArray = new JSONArray(response.toString());
 
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject oneEnterPrises = jsonArray.getJSONObject(i);
@@ -104,14 +121,20 @@ public class NetWorkMap {
                         String province = oneEnterPrises.getString("province");
                         String city = oneEnterPrises.getString("city");
                         String area = oneEnterPrises.getString("area");
-                        float fx = (float) oneEnterPrises.getDouble("lng");
-                        float fy = (float) oneEnterPrises.getDouble("lat");
-                        float fval = (float) oneEnterPrises.getDouble("concentration");
+                        Double fx =  oneEnterPrises.getDouble("lng");
+                        Double fy =  oneEnterPrises.getDouble("lat");
+                        Double fval =  oneEnterPrises.getDouble("concentration");
                         int hood_id = oneEnterPrises.getInt("hood_id");
                         String created_at = oneEnterPrises.getString("created_at");
                         String updated_at = oneEnterPrises.getString("updated_at");
 
-                        NetWorkMap.this.listLatLng.add(new LatLng(fx,fy));
+//                        Log.e("errss", fx+ "  "+ fy);
+                        NetWorkMap.this.listMapBeanList.add(new MapBean(
+                                new LatLng(fy,fx),
+                                fval,
+                                1,
+                                id
+                        ));
                     }
 
                     handler1();

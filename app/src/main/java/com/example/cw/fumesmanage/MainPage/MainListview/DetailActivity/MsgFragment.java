@@ -1,6 +1,5 @@
 package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -47,16 +46,17 @@ public class MsgFragment extends Fragment {
         tvName = (TextView)getActivity().findViewById(R.id.id_TvName);
         tvValue = (TextView)getActivity().findViewById(R.id.id_TvValue);
 
-        //1、获取Preferences
-        SharedPreferences vals = getActivity().getSharedPreferences("postInfo", 0);
-        //2、取出数据
-        String name = vals.getString("title","");
-        String values = vals.getString("value","");
+//        //1、获取Preferences
+//        SharedPreferences vals = getActivity().getSharedPreferences("postInfo", 0);
+//        //2、取出数据
+//        String name = vals.getString("title","");
+//        String values = vals.getString("value","");
+//
+//        System.out.println(name + values+"123456");
 
-        System.out.println(name + values+"123456");
 
-        tvName.setText(name);
-        tvValue.setText(values);
+//        tvName.setText(name);
+//        tvValue.setText(values);
 
     }
 }
