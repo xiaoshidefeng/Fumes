@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime.RealTimeAdapter;
 import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime.RealTimeBean;
+import com.github.mikephil.charting.charts.LineChart;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,11 +35,19 @@ public class NetWorkRealTime {
 
     private Context context;
 
-    public NetWorkRealTime(List<RealTimeBean> realTimeBeanList, ListView listView, URL url, Context context) {
+    private LineChart lineChart;
+
+    private String[] times;
+
+    private double[] vals;
+
+    public NetWorkRealTime(List<RealTimeBean> realTimeBeanList
+            , ListView listView, URL url, Context context, LineChart lineChart) {
         this.realTimeBeanList = realTimeBeanList;
         this.listView = listView;
         this.url = url;
         this.context = context;
+        this.lineChart = lineChart;
     }
 
 
@@ -53,6 +62,9 @@ public class NetWorkRealTime {
         public void handleMessage(Message msg) {
             RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
             NetWorkRealTime.this.listView.setAdapter(myAdapter);
+
+            RealChartMaker realChartMaker = new RealChartMaker(times, vals, NetWorkRealTime.this.lineChart);
+            realChartMaker.makeChart();
         }
     };
 
@@ -94,7 +106,7 @@ public class NetWorkRealTime {
 
                     JSONArray jsonArray = new JSONArray(response.toString());
 
-                    for(int i = 0; i < jsonArray.length(); i++){
+                    for(int i = 0,count = 0; i < jsonArray.length(); i++,count++){
                         JSONObject oneEnterPrises = jsonArray.getJSONObject(i);
 
                         int id = oneEnterPrises.getInt("id");
@@ -103,7 +115,8 @@ public class NetWorkRealTime {
                         int hood_id = oneEnterPrises.getInt("hood_id");
                         String created_at = oneEnterPrises.getString("created_at");
                         String updated_at = oneEnterPrises.getString("updated_at");
-
+                        times[count] = time;
+                        vals[count] = fval;
                         NetWorkRealTime.this.realTimeBeanList.add(new RealTimeBean(
                                 id,
                                 hood_id,

@@ -16,19 +16,30 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import java.util.ArrayList;
 
 /**
- * Created by cw on 2017/3/24.
- * 生成假表格及数据
+ * Created by cw on 2017/3/30.
  */
 
-public class ChartDataMaker {
+public class RealChartMaker {
+
+    private String[] strings;
+    private double[] doubles;
+    private LineChart lineChart;
+
+    public RealChartMaker(String[] strings, double[] doubles, LineChart lineChart) {
+        this.strings = strings;
+        this.doubles = doubles;
+        this.lineChart = lineChart;
+    }
 
 
-    String[] time = new String[] { "01:51:15", "08:01:10", "21:51:00", "08:03:00", "06:31:30" };
 
-    public void makeChart(LineChart lineChart){
+    public void makeChart(){
 
-        LineData mLineData = getLineData(5, 10);
-        showChart(lineChart, mLineData, Color.rgb(255, 255, 255));
+        if(RealChartMaker.this.doubles!=null){
+            LineData mLineData = getLineData();
+            showChart(RealChartMaker.this.lineChart, mLineData, Color.rgb(255, 255, 255));
+        }
+
     }
 
     // 设置显示的样式
@@ -74,14 +85,14 @@ public class ChartDataMaker {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
 
-                return time[(int)value];
+                return RealChartMaker.this.strings[(int)value];
             }
 
         };
         //定制X轴起点和终点Label不能超出屏幕。
         xAxis.setAvoidFirstLastClipping(true);
         xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
-        xAxis.setValueFormatter(formatter);
+//        xAxis.setValueFormatter(formatter);
 
         // enable scaling and dragging
         lineChart.setDragEnabled(true);// 是否可以拖拽
@@ -111,26 +122,24 @@ public class ChartDataMaker {
 
     /**
      * 生成一个数据
-     * @param count 表示图表中有多少个坐标点
-     * @param range 用来生成range以内的随机数
+     *
      * @return
      */
-    private LineData getLineData(int count, float range) {
+    private LineData getLineData() {
 
 
         // y轴的数据
         ArrayList<Entry> yValues = new ArrayList<Entry>();
+        //System.out.println(RealChartMaker.this.doubles.length+ "  123121");
+        if(RealChartMaker.this.doubles!=null){
+            for(int i = 0; i < RealChartMaker.this.doubles.length ;i++){
+                Entry y = new Entry(i, (float)doubles[i]) ;
+                yValues.add(y);
 
-        Entry y1 = new Entry(0f , 1.5f) ;
-        Entry y2 = new Entry(1f , 0f) ;
-        Entry y3 = new Entry(2f , 2.20f) ;
-        Entry y4 = new Entry(3f , 1f) ;
-        Entry y5 = new Entry(4f , 0.2f) ;
-        yValues.add(y1) ;
-        yValues.add(y2) ;
-        yValues.add(y3) ;
-        yValues.add(y4) ;
-        yValues.add(y5) ;
+            }
+        }
+
+
 
 
         // create a dataset and give it a type
@@ -159,5 +168,4 @@ public class ChartDataMaker {
 
         return lineData;
     }
-
 }

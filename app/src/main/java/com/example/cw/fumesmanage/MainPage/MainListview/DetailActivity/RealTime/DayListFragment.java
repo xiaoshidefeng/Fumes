@@ -61,17 +61,6 @@ public class DayListFragment extends Fragment {
     private void initview() {
         listView = (ListView)getActivity().findViewById(R.id.id_LVday);
 
-//        for(int i = 0;i<20 ;i++){
-//            itemBeen.add(new MainItemBean(
-//                    i,
-//                    s[i],
-//                    i+"mg/m³"
-//            ));
-//        }
-
-//        MainAdapter myAdapter = new MainAdapter(getContext(),itemBeen);
-//        listView.setAdapter(myAdapter);
-
         SharedPreferences vals = getActivity().getSharedPreferences("EnterInfo", 0);
         id = vals.getString("id","");
         try {
@@ -80,8 +69,9 @@ public class DayListFragment extends Fragment {
             e.printStackTrace();
         }
 
-
-        NetWorkRealTime netWorkRealTime = new NetWorkRealTime(itemBeen, listView, url, getContext());
+        ChartDataMaker cdm = new ChartDataMaker();
+        mLineChart = (LineChart)getActivity().findViewById(R.id.id_Daychart);
+        NetWorkRealTime netWorkRealTime = new NetWorkRealTime(itemBeen, listView, url, getContext(), mLineChart);
         netWorkRealTime.enterprises();
 
         chartMake();
@@ -89,9 +79,7 @@ public class DayListFragment extends Fragment {
     }
 
     private void chartMake() {
-        ChartDataMaker cdm = new ChartDataMaker();
-        mLineChart = (LineChart)getActivity().findViewById(R.id.id_Daychart);
-        cdm.makeChart(mLineChart);
+
     }
 
 }
