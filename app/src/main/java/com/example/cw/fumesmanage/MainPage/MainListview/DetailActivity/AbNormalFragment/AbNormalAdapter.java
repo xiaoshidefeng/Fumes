@@ -59,8 +59,8 @@ public class AbNormalAdapter extends BaseAdapter{
             view = mInflater.inflate(R.layout.main_list_item,null);
 
 
-            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemTitle);
-            viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemContent);
+            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemName);
+            viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemValue);
             viewHolder.rl = (RelativeLayout)view.findViewById(R.id.id_RLmainListView);
 
             view.setTag(viewHolder);
@@ -79,8 +79,9 @@ public class AbNormalAdapter extends BaseAdapter{
                 new AlertDialog.Builder(view.getContext())
                         //.setIcon(R.drawable.icon)
                         .setTitle("处理")
-                        .setMessage("是否要处理"+bean.ItemTitle+"\n油烟值："+bean.ItemValue)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener(){
+                        .setMessage("是否处理"+bean.ItemTitle+"\n油烟值："+bean.ItemValue)
+                        .setNegativeButton("不处理",null)
+                        .setPositiveButton("处理", new DialogInterface.OnClickListener(){
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
