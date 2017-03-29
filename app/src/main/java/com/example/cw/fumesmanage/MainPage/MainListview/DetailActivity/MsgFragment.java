@@ -155,7 +155,7 @@ public class MsgFragment extends Fragment {
 
                     JSONObject oneEnterPrises = new JSONObject(response.toString());
 
-                    int id = oneEnterPrises.getInt("id");
+                    id = oneEnterPrises.getInt("id");
                     enter_long = oneEnterPrises.getString("enterprise_long");
                     name = oneEnterPrises.getString("name");
                     province = oneEnterPrises.getString("province");

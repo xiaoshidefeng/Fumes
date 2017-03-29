@@ -1,5 +1,6 @@
-package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity;
+package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.cw.fumesmanage.MainPage.MainListview.MainItemBean;
 import com.example.cw.fumesmanage.R;
 import com.example.cw.fumesmanage.Tools.ChartDataMaker;
+import com.example.cw.fumesmanage.Tools.NetWorkRealTime;
 import com.github.mikephil.charting.charts.LineChart;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +24,15 @@ import java.util.List;
  */
 
 public class DayListFragment extends Fragment {
-    private List<MainItemBean> itemBeen = new ArrayList<>();
+    private List<RealTimeBean> itemBeen = new ArrayList<>();
 
     private ListView listView;
+
+    private String RealUrl = "http://120.25.90.170/realtime/";
+
+    private URL url;
+
+    private String id;
 
     private LineChart mLineChart;
 
@@ -62,6 +71,19 @@ public class DayListFragment extends Fragment {
 
 //        MainAdapter myAdapter = new MainAdapter(getContext(),itemBeen);
 //        listView.setAdapter(myAdapter);
+
+        SharedPreferences vals = getActivity().getSharedPreferences("EnterInfo", 0);
+        id = vals.getString("id","");
+        try {
+            url = new URL(RealUrl+id);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+
+        NetWorkRealTime netWorkRealTime = new NetWorkRealTime(itemBeen, listView, url, getContext());
+        netWorkRealTime.enterprises();
+
         chartMake();
 
     }
