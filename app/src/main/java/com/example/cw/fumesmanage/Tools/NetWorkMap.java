@@ -1,6 +1,8 @@
 package com.example.cw.fumesmanage.Tools;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -11,6 +13,7 @@ import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
+import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.DetailActivity;
 import com.example.cw.fumesmanage.R;
 
 import org.json.JSONArray;
@@ -72,6 +75,28 @@ public class NetWorkMap {
             NetWorkMap.this.aMap.moveCamera(CameraUpdateFactory.changeLatLng(
                     NetWorkMap.this.listMapBeanList.get(jsonArray.length()-1).latLng));
             NetWorkMap.this.aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+
+            // 定义 Marker 点击事件监听
+            AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
+                // marker 对象被点击时回调的接口
+                // 返回 true 则表示接口已响应事件，否则返回false
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+
+                    SharedPreferences sharedPreferences = NetWorkMap.this.context.getSharedPreferences("EnterInfo",
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("id",marker.getTitle());
+                    editor.commit();
+
+                    Intent intent = new Intent(NetWorkMap.this.context, DetailActivity.class);
+                    NetWorkMap.this.context.startActivity(intent);
+
+                    return true;
+                }
+            };
+            // 绑定 Marker 被点击事件
+            NetWorkMap.this.aMap.setOnMarkerClickListener(markerClickListener);
         }
     };
 

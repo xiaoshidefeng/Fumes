@@ -64,7 +64,7 @@ public class MainAdapter extends BaseAdapter {
 
             viewHolder.name = (TextView)view.findViewById(R.id.id_TVmainListViewItemName);
             viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemValue);
-            viewHolder.area = (TextView)view.findViewById(R.id.id_TVmainListViewItemLocation);
+//            viewHolder.area = (TextView)view.findViewById(R.id.id_TVmainListViewItemLocation);
             viewHolder.updated_at = (TextView)view.findViewById(R.id.id_TVmainListViewItemUpdateTime);
             viewHolder.rl = (RelativeLayout)view.findViewById(R.id.id_RLmainListView);
 
@@ -78,8 +78,8 @@ public class MainAdapter extends BaseAdapter {
 
         final MainItemBean bean = mList.get(i);
         viewHolder.name.setText(bean.name);
-        viewHolder.value.setText(bean.fval+"");
-        viewHolder.area.setText(bean.province+bean.city+bean.area);
+        viewHolder.value.setText(bean.fval+"mg/m³");
+//        viewHolder.area.setText(bean.province+bean.city+bean.area);
         viewHolder.updated_at.setText(bean.updated_at);
         /**
          * 判断数值是否正常 正常显示绿色 不正常显示红色
@@ -95,14 +95,10 @@ public class MainAdapter extends BaseAdapter {
         viewHolder.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                                SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("postInfo",
+                                SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("EnterInfo",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("title",bean.name);
-                editor.putFloat("value",bean.fval);
-                editor.putString("area",bean.province+bean.city+bean.area);
-                editor.putString("enter_long",bean.enter_long);
-
+                editor.putString("id",bean.id+"");
                 editor.commit();
 
 //                Toast.makeText(view.getContext(),bean.ItemTitle,Toast.LENGTH_SHORT).show();
@@ -145,7 +141,7 @@ public class MainAdapter extends BaseAdapter {
 //        public TextView enter_long;
         public TextView name;
 //        public TextView province;
-        public TextView area;
+//        public TextView area;
 //        public TextView fx;
 //        public TextView fy;
 //        public TextView fval;

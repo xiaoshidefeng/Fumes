@@ -6,25 +6,15 @@
     android:background="@color/colorWithe">
 
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/colorBlack"
-            android:text="监测状态："/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/colorGreen"
-            android:text="正常"
-            android:id="@+id/id_TVZhuangtai"/>
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="公司信息："/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,13 +24,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="企业编号："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="0001"
             android:id="@+id/id_TVcodeNumer"/>
@@ -55,16 +45,46 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:text="企业名称："
             android:textColor="@color/colorBlack"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:id="@+id/id_TvName"/>
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="企业地址："
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:id="@+id/id_TvArea"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="监测信息："/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,13 +94,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="监测时间："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="2017-03-03"
             android:id="@+id/id_TVTime"/>
@@ -95,13 +115,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:text="油烟浓度："
             android:textColor="@color/colorBlack"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:id="@+id/id_TvValue"/>
     </LinearLayout>
@@ -114,15 +134,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="油烟机状态："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/colorBlack"
-            android:text="公司"
+            android:textSize="15sp"
+            android:textColor="@color/colorGreen"
+            android:text="正常"
             android:id="@+id/id_TVFumesStatus"/>
     </LinearLayout>
 
@@ -134,13 +154,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="监测状态："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorGreen"
             android:text="运行"
             android:id="@+id/id_TVSeeStatus"/>
@@ -154,13 +174,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="运行开始时间："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="2017-03-03 12:00"
             android:id="@+id/id_TVOpenTime"/>
@@ -174,13 +194,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="通讯状态："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textColor="@color/colorGreen"
             android:text="正常"
             android:id="@+id/id_TVContactStatus"/>

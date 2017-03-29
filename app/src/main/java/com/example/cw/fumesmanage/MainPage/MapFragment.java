@@ -1,6 +1,5 @@
 package com.example.cw.fumesmanage.MainPage;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,8 +13,6 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.model.Marker;
-import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.DetailActivity;
 import com.example.cw.fumesmanage.R;
 import com.example.cw.fumesmanage.Tools.MapBean;
 import com.example.cw.fumesmanage.Tools.NetWorkMap;
@@ -102,21 +99,28 @@ public class MapFragment extends android.support.v4.app.Fragment {
 //                .icon(BitmapDescriptorFactory.fromResource(R.drawable.red2d)));
 //
         // 定义 Marker 点击事件监听
-        AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
-            // marker 对象被点击时回调的接口
-            // 返回 true 则表示接口已响应事件，否则返回false
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                startActivity(intent);
+//        AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
+//            // marker 对象被点击时回调的接口
+//            // 返回 true 则表示接口已响应事件，否则返回false
+//            @Override
+//            public boolean onMarkerClick(Marker marker) {
+//
+//                SharedPreferences sharedPreferences = getContext().getSharedPreferences("EnterInfo",
+//                        Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putInt("id",bean.id);
+//                editor.commit();
+//
+//                Intent intent = new Intent(getActivity(), DetailActivity.class);
+//                startActivity(intent);
+//
+//                //Toast.makeText(getActivity(),marker.getTitle().toString(),Toast.LENGTH_SHORT).show();
+//                return true;
+//            }
+//        };
 
-                //Toast.makeText(getActivity(),marker.getTitle().toString(),Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        };
-
-        // 绑定 Marker 被点击事件
-        aMap.setOnMarkerClickListener(markerClickListener);
+//        // 绑定 Marker 被点击事件
+//        aMap.setOnMarkerClickListener(markerClickListener);
 //
 //        aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng2));
 
@@ -147,17 +151,17 @@ public class MapFragment extends android.support.v4.app.Fragment {
                 }
             }
         });
-//设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
+        //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-//设置定位间隔,单位毫秒,默认为2000ms
+        //设置定位间隔,单位毫秒,默认为2000ms
         mLocationOption.setInterval(200000);
-//设置定位参数
+        //设置定位参数
         mLocationClient.setLocationOption(mLocationOption);
-// 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-// 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-// 在定位结束后，在合适的生命周期调用onDestroy()方法
-// 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-//启动定位
+        // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
+        // 在定位结束后，在合适的生命周期调用onDestroy()方法
+        // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+        //启动定位
         mLocationClient.startLocation();
 
         return mapLayout;
