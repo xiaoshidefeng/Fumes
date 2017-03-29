@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.cw.fumesmanage.MainPage.MainListview.MainAdapter;
 import com.example.cw.fumesmanage.MainPage.MainListview.MainItemBean;
 import com.example.cw.fumesmanage.R;
 import com.example.cw.fumesmanage.Tools.ChartDataMaker;
@@ -52,16 +51,16 @@ public class MonthListFragment extends Fragment {
     private void initview() {
         listView = (ListView)getActivity().findViewById(R.id.id_LVmonth);
 
-        for(int i = 0;i<20 ;i++){
-            itemBeen.add(new MainItemBean(
-                    i,
-                    s[i],
-                    i+"mg/m³"
-            ));
-        }
-
-        MainAdapter myAdapter = new MainAdapter(getContext(),itemBeen);
-        listView.setAdapter(myAdapter);
+//        for(int i = 0;i<20 ;i++){
+//            itemBeen.add(new MainItemBean(
+//                    i,
+//                    s[i],
+//                    i+"mg/m³"
+//            ));
+//        }
+//
+//        MainAdapter myAdapter = new MainAdapter(getContext(),itemBeen);
+//        listView.setAdapter(myAdapter);
 
         chartMake();
 

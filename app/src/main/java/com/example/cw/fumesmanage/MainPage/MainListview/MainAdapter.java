@@ -62,8 +62,10 @@ public class MainAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.main_list_item,null);
 
 
-            viewHolder.title = (TextView)view.findViewById(R.id.id_TVmainListViewItemName);
+            viewHolder.name = (TextView)view.findViewById(R.id.id_TVmainListViewItemName);
             viewHolder.value = (TextView)view.findViewById(R.id.id_TVmainListViewItemValue);
+            viewHolder.area = (TextView)view.findViewById(R.id.id_TVmainListViewItemLocation);
+            viewHolder.updated_at = (TextView)view.findViewById(R.id.id_TVmainListViewItemUpdateTime);
             viewHolder.rl = (RelativeLayout)view.findViewById(R.id.id_RLmainListView);
 
 
@@ -75,15 +77,16 @@ public class MainAdapter extends BaseAdapter {
 
 
         final MainItemBean bean = mList.get(i);
-        viewHolder.title.setText(bean.ItemTitle);
-        viewHolder.value.setText(bean.ItemValue);
-
+        viewHolder.name.setText(bean.name);
+        viewHolder.value.setText(bean.fval+"");
+        viewHolder.area.setText(bean.province+bean.city+bean.area);
+        viewHolder.updated_at.setText(bean.updated_at);
         /**
          * 判断数值是否正常 正常显示绿色 不正常显示红色
          * list 里面要传入两个value 一个用于显示 一个用于判断
          */
 
-        if (bean.getId() > 2){
+        if (bean.fval > 2){
             viewHolder.value.setTextColor(Color.RED);
         }else {
             viewHolder.value.setTextColor(Color.rgb(0,153,0));
@@ -95,8 +98,11 @@ public class MainAdapter extends BaseAdapter {
                                 SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("postInfo",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("title",bean.ItemTitle);
-                editor.putString("value",bean.ItemValue);
+                editor.putString("title",bean.name);
+                editor.putFloat("value",bean.fval);
+                editor.putString("area",bean.province+bean.city+bean.area);
+                editor.putString("enter_long",bean.enter_long);
+
                 editor.commit();
 
 //                Toast.makeText(view.getContext(),bean.ItemTitle,Toast.LENGTH_SHORT).show();
@@ -133,8 +139,20 @@ public class MainAdapter extends BaseAdapter {
     }
 
     class ViewHolder{
-        public TextView title;
+//        public TextView title;
         public TextView value;
+//        public TextView id;
+//        public TextView enter_long;
+        public TextView name;
+//        public TextView province;
+        public TextView area;
+//        public TextView fx;
+//        public TextView fy;
+//        public TextView fval;
+//        public TextView hood_id;
+//        public TextView created_at;
+        public TextView updated_at;
+
 
         public RelativeLayout rl;
 
