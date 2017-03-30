@@ -2,6 +2,7 @@ package com.example.cw.fumesmanage.MainPage.MainListview;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class ListFragment extends android.support.v4.app.Fragment {
 
     private URL url;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     private String[] s = {"微软","alibaba","腾讯","Baidu","微软","alibaba","腾讯","Baidu","腾讯","Baidu"
         ,"微软","alibaba","腾讯","Baidu","微软","alibaba","腾讯","Baidu","腾讯","Baidu"};
 
@@ -50,7 +53,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
     }
     private void initview() {
         listView = (ListView)getActivity().findViewById(R.id.id_MainListView);
-
+        swipeRefreshLayout = (SwipeRefreshLayout)getActivity().findViewById(R.id.id_RefreshMainList);
 //        for(int i = 0;i<20 ;i++){
 //            itemBeen.add(new MainItemBean(
 //                    i,
@@ -66,9 +69,21 @@ public class ListFragment extends android.support.v4.app.Fragment {
             e.printStackTrace();
         }
 
-        NetWorkGo netWorkGo = new NetWorkGo(url,itemBeen,listView,getContext());
+        itemBeen.clear();
+        NetWorkGo netWorkGo = new NetWorkGo(url, itemBeen, listView, getContext());
 
-        netWorkGo.enterprises();
+        netWorkGo.InitEnterprises();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                itemBeen.clear();
+                NetWorkGo netWorkGo = new NetWorkGo(url, itemBeen, listView, getContext(), swipeRefreshLayout);
+
+                netWorkGo.RefreshEnterprises();
+            }
+        });
 
 
 

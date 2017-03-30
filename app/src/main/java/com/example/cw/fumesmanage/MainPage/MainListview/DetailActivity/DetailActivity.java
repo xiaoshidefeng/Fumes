@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ public class DetailActivity extends AppCompatActivity {
     private RadioButton rbMonthListChart;
     private RadioButton rbUnNormal;
     private RadioButton rbOnSite;
+
+    private ProgressBar progressBar;
 
     private ImageView imgBack;
 
@@ -61,13 +64,15 @@ public class DetailActivity extends AppCompatActivity {
         rbUnNormal = (RadioButton)findViewById(R.id.rb_abnormal);
         rbOnSite = (RadioButton)findViewById(R.id.rb_onstie);
         imgBack = (ImageView)findViewById(R.id.id_back);
-
+        //progressBar = (ProgressBar)findViewById(R.id.id_ProgressBarDetail);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        //progressBar.setVisibility(View.VISIBLE);
 
         rgTabBar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

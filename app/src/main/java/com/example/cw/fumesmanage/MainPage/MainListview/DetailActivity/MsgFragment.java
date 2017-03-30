@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.cw.fumesmanage.R;
@@ -56,6 +57,8 @@ public class MsgFragment extends Fragment {
     private String created_at;
     private String updated_at;
 
+    private ProgressBar progressBar;
+
     public MsgFragment(){
 
     }
@@ -91,9 +94,11 @@ public class MsgFragment extends Fragment {
         TVOpenTime = (TextView)getActivity().findViewById(R.id.id_TVOpenTime);
         TVLinkStatus = (TextView)getActivity().findViewById(R.id.id_TVContactStatus);
         TvArea = (TextView)getActivity().findViewById(R.id.id_TvArea);
-
+        progressBar = (ProgressBar)getActivity().findViewById(R.id.id_ProgressBarDetail);
         SharedPreferences vals = getActivity().getSharedPreferences("EnterInfo", 0);
         Id = vals.getString("id","");
+
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 
@@ -115,6 +120,7 @@ public class MsgFragment extends Fragment {
             TVOpenTime.setText(created_at);
             TVLinkStatus.setText("正常");
             TvArea.setText(province+city+area);
+            progressBar.setVisibility(View.GONE);
         }
     };
 

@@ -212,6 +212,15 @@
             android:text="正常"
             android:id="@+id/id_TVContactStatus"/>
     </LinearLayout>
+
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ly_top_bar"
+            android:progressDrawable="@drawable/progrs"
+            android:id="@+id/id_ProgressBarDetail"
+            />
         </LinearLayout>
     </ScrollView>
 
