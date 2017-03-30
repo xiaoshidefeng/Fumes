@@ -237,8 +237,6 @@ public class NetWorkGo {
 
                     handler3();
 
-                    //TODO
-
                 }   catch (Exception e) {
                     Log.e("errss", e.getMessage());
                 }

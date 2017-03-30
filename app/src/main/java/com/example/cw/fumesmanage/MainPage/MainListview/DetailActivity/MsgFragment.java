@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.cw.fumesmanage.R;
+import com.example.cw.fumesmanage.Tools.ConstClass;
 
 import org.json.JSONObject;
 
@@ -28,9 +29,6 @@ import java.net.URL;
  */
 
 public class MsgFragment extends Fragment {
-
-    private String OneUrl = "http://120.25.90.170/enterprises/";
-
 
     private TextView TvCode;
     private TextView TvName;
@@ -138,7 +136,7 @@ public class MsgFragment extends Fragment {
                 HttpURLConnection connection = null;
                 try {
 
-                    URL url  = new URL(OneUrl+Id);
+                    URL url  = new URL(ConstClass.GET_ONE_ENTERPRISES+Id);
 
                     connection = (HttpURLConnection)url.openConnection();
                     connection.setRequestMethod("GET");

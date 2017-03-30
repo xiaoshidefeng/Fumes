@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.cw.fumesmanage.R;
+import com.example.cw.fumesmanage.Tools.ConstClass;
 import com.example.cw.fumesmanage.Tools.NetWorkGo;
 
 import java.net.MalformedURLException;
@@ -30,10 +31,6 @@ public class ListFragment extends android.support.v4.app.Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private String[] s = {"微软","alibaba","腾讯","Baidu","微软","alibaba","腾讯","Baidu","腾讯","Baidu"
-        ,"微软","alibaba","腾讯","Baidu","微软","alibaba","腾讯","Baidu","腾讯","Baidu"};
-
-
     public ListFragment() {
     }
 
@@ -54,17 +51,9 @@ public class ListFragment extends android.support.v4.app.Fragment {
     private void initview() {
         listView = (ListView)getActivity().findViewById(R.id.id_MainListView);
         swipeRefreshLayout = (SwipeRefreshLayout)getActivity().findViewById(R.id.id_RefreshMainList);
-//        for(int i = 0;i<20 ;i++){
-//            itemBeen.add(new MainItemBean(
-//                    i,
-//                    s[i],
-//                    i+"mg/m³"
-//            ));
-//        }
 
-        String s = "http://120.25.90.170/enterprises";
         try {
-            url = new URL(s);
+            url = new URL(ConstClass.GET_ALL_ENTERPRISES);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

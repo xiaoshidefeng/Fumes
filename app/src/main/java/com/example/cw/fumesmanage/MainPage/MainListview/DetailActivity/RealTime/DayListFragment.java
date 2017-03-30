@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.cw.fumesmanage.R;
 import com.example.cw.fumesmanage.Tools.ChartDataMaker;
+import com.example.cw.fumesmanage.Tools.ConstClass;
 import com.example.cw.fumesmanage.Tools.NetWorkRealTime;
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -27,8 +28,6 @@ public class DayListFragment extends Fragment {
     private List<RealTimeBean> itemBeen = new ArrayList<>();
 
     private ListView listView;
-
-    private String RealUrl = "http://120.25.90.170/realtime/";
 
     private URL url;
 
@@ -64,7 +63,7 @@ public class DayListFragment extends Fragment {
         SharedPreferences vals = getActivity().getSharedPreferences("EnterInfo", 0);
         id = vals.getString("id","");
         try {
-            url = new URL(RealUrl+id);
+            url = new URL(ConstClass.GET_REALTIME_ENTERPRISES_VALUE+id);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
