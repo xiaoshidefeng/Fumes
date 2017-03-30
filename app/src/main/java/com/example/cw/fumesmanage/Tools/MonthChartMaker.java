@@ -1,6 +1,7 @@
 package com.example.cw.fumesmanage.Tools;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -12,6 +13,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 
@@ -19,15 +21,16 @@ import java.util.ArrayList;
  * Created by cw on 2017/3/30.
  */
 
-public class RealChartMaker {
-
+public class MonthChartMaker {
     private String[] strings;
-    private double[] doubles;
+    private double[] maxns;
+    private double[] minns;
     private LineChart lineChart;
 
-    public RealChartMaker(String[] strings, double[] doubles, LineChart lineChart) {
+    public MonthChartMaker(String[] strings, double[] maxns, double[] minns, LineChart lineChart) {
         this.strings = strings;
-        this.doubles = doubles;
+        this.maxns = maxns;
+        this.minns = minns;
         this.lineChart = lineChart;
     }
 
@@ -35,9 +38,9 @@ public class RealChartMaker {
 
     public void makeChart(){
 
-        if(RealChartMaker.this.doubles!=null){
+        if(MonthChartMaker.this.maxns!=null){
             LineData mLineData = getLineData();
-            showChart(RealChartMaker.this.lineChart, mLineData, Color.rgb(255, 255, 255));
+            showChart(MonthChartMaker.this.lineChart, mLineData, Color.rgb(255, 255, 255));
         }
 
     }
@@ -70,14 +73,7 @@ public class RealChartMaker {
         yLimitLine.setLineColor(Color.RED);
         yLimitLine.setTextColor(Color.RED);
 
-//        LimitLine yLimitLinewarn = new LimitLine(1.9f,"报警线 1.9mg/m³");
-//        yLimitLinewarn.setTextSize(15f);
-//        yLimitLinewarn.setLineColor(Color.rgb(255,153,18));
-//        yLimitLinewarn.setTextColor(Color.RED);
-
-
         leftAxis.addLimitLine(yLimitLine);
-//        leftAxis.addLimitLine(yLimitLinewarn);
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
@@ -85,10 +81,12 @@ public class RealChartMaker {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
 
-                return RealChartMaker.this.strings[(int)value];
+                return MonthChartMaker.this.strings[(int)value];
             }
 
+
         };
+
         //定制X轴起点和终点Label不能超出屏幕。
 //        xAxis.setAvoidFirstLastClipping(true);
         xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
@@ -127,44 +125,68 @@ public class RealChartMaker {
      */
     private LineData getLineData() {
 
+        //总合集
+        ArrayList<ILineDataSet> lineDataSets = new ArrayList<ILineDataSet>();
 
-        // y轴的数据
-        ArrayList<Entry> yValues = new ArrayList<Entry>();
+        // y轴的当天最大值数据
+        ArrayList<Entry> yValuesMax = new ArrayList<Entry>();
         //System.out.println(RealChartMaker.this.doubles.length+ "  123121");
-        if(RealChartMaker.this.doubles!=null){
-            for(int i = 0; i < RealChartMaker.this.doubles.length ;i++){
-                Entry y = new Entry(i, (float)doubles[i]) ;
-                yValues.add(y);
+        if(MonthChartMaker.this.maxns!=null){
+            for(int i = 0; i < MonthChartMaker.this.maxns.length ;i++){
+                Entry y = new Entry(i, (float)maxns[i]) ;
+                yValuesMax.add(y);
 
             }
         }
 
-
-
-
-        // create a dataset and give it a type
         // y轴的数据集合
-        LineDataSet lineDataSet = new LineDataSet(yValues, "当天油烟检测图" /*显示在比例图上*/);
-        // mLineDataSet.setFillAlpha(110);
-        // mLineDataSet.setFillColor(Color.RED);
+        LineDataSet lineDataSet = new LineDataSet(yValuesMax, "当天最大值" /*显示在比例图上*/);
 
         //用y轴的集合来设置参数
         lineDataSet.setLineWidth(1.75f); // 线宽
         lineDataSet.setCircleSize(5f);// 显示的圆形大小
-        lineDataSet.setColor(Color.rgb(0,153,0));// 显示颜色
-        lineDataSet.setCircleColor(Color.rgb(0,153,0));// 圆形的颜色
+        lineDataSet.setColor(Color.rgb(153,0,0));// 显示颜色
+        lineDataSet.setCircleColor(Color.rgb(153,0,0));// 圆形的颜色
 //        lineDataSet.setHighLightColor(R.color.colorBule); // 高亮的线的颜色
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);//曲线风格
         lineDataSet.setCubicIntensity(0.2f);//设置曲线的平滑度
         lineDataSet.setDrawFilled(true);//设置允许填充
 
-
-        ArrayList<LineDataSet> lineDataSets = new ArrayList<LineDataSet>();
+        lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         lineDataSets.add(lineDataSet); // add the datasets
 
-        // create a data object with the datasets
-        LineData lineData = new LineData(lineDataSet);
 
+
+        // y轴当天最小值的数据
+        ArrayList<Entry> yValuesMin = new ArrayList<Entry>();
+        //System.out.println(RealChartMaker.this.doubles.length+ "  123121");
+        if(MonthChartMaker.this.minns!=null){
+            for(int i = 0; i < MonthChartMaker.this.minns.length ;i++){
+                Entry y = new Entry(i, (float)minns[i]) ;
+                yValuesMin.add(y);
+                Log.e("status",minns[i]+"");
+
+            }
+        }
+
+        // y轴的数据集合
+        LineDataSet lineDataSet2 = new LineDataSet(yValuesMin, "当天最小值" /*显示在比例图上*/);
+
+        //用y轴的集合来设置参数
+        lineDataSet2.setLineWidth(1.75f); // 线宽
+        lineDataSet2.setCircleSize(5f);// 显示的圆形大小
+        lineDataSet2.setColor(Color.rgb(0,0,153));// 显示颜色
+        lineDataSet2.setCircleColor(Color.rgb(0,0,153));// 圆形的颜色
+//        lineDataSet.setHighLightColor(R.color.colorBule); // 高亮的线的颜色
+        lineDataSet2.setMode(LineDataSet.Mode.CUBIC_BEZIER);//曲线风格
+        lineDataSet2.setCubicIntensity(0.2f);//设置曲线的平滑度
+        lineDataSet2.setDrawFilled(true);//设置允许填充
+
+        lineDataSet2.setAxisDependency(YAxis.AxisDependency.LEFT);
+        lineDataSets.add(lineDataSet2); // add the datasets
+
+        // create a data object with the datasets
+        LineData lineData = new LineData(lineDataSets);
 
         return lineData;
     }

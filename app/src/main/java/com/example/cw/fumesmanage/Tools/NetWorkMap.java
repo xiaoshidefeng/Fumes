@@ -59,7 +59,7 @@ public class NetWorkMap {
 
             for (MapBean m: NetWorkMap.this.listMapBeanList) {
                 LatLng l = m.latLng;
-                if(m.value<2.0){
+                if(m.value<=1.8){
                     Marker marker = NetWorkMap.this.aMap.addMarker(new MarkerOptions()
                             .position(l).title(m.id + "").snippet("message")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.green2d)));

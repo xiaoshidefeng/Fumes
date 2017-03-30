@@ -1,4 +1,4 @@
-package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime;
+package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.Monthly;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,23 +13,22 @@ import com.example.cw.fumesmanage.R;
 import java.util.List;
 
 /**
- * Created by cw on 2017/3/29.
+ * Created by cw on 2017/3/30.
  */
 
-public class RealTimeAdapter extends BaseAdapter {
+public class MonthAdapter extends BaseAdapter {
 
 
-    private List<RealTimeBean> mList;
+    private List<MonthListBean> mList;
 
     private ViewHolder viewHolder = null;
 
     private LayoutInflater mInflater;
 
-    public RealTimeAdapter(Context context, List<RealTimeBean> mList) {
-        this.mInflater = mInflater.from(context);
+    public MonthAdapter(Context context, List<MonthListBean> mList) {
         this.mList = mList;
+        this.mInflater = mInflater.from(context);
     }
-
 
     @Override
     public int getCount() {
@@ -52,11 +51,12 @@ public class RealTimeAdapter extends BaseAdapter {
         if(view == null){
 
             viewHolder = new ViewHolder();
-            view = mInflater.inflate(R.layout.detail_fg_daylist_item_layout,null);
+            view = mInflater.inflate(R.layout.detail_fg_month_listview_item_layout,null);
 
 
-            viewHolder.time = (TextView)view.findViewById(R.id.id_TVListItemRealSeeTime);
-            viewHolder.value = (TextView)view.findViewById(R.id.id_TVRealItemValue);
+            viewHolder.time = (TextView)view.findViewById(R.id.id_TVListItemMonthDay);
+            viewHolder.maxn = (TextView)view.findViewById(R.id.id_TVMaxValue);
+            viewHolder.minn = (TextView)view.findViewById(R.id.id_TVMinValue);
             //viewHolder.rl = (RelativeLayout)view.findViewById(R.id.id_RLmainListView);
 
             view.setTag(viewHolder);
@@ -65,15 +65,23 @@ public class RealTimeAdapter extends BaseAdapter {
         }
 
 
-        final RealTimeBean bean = mList.get(i);
+        final MonthListBean bean = mList.get(i);
         viewHolder.time.setText(bean.time);
-        viewHolder.value.setText(bean.value+"mg/m³");
+        viewHolder.maxn.setText(bean.maxn+"mg/m³");
+        viewHolder.minn.setText(bean.minn+"mg/m³");
 
-        if (bean.value > 1.8){
-            viewHolder.value.setTextColor(Color.RED);
+        if (bean.maxn > 1.8){
+            viewHolder.maxn.setTextColor(Color.RED);
         }else {
 
-            viewHolder.value.setTextColor(Color.rgb(0,153,0));
+            viewHolder.maxn.setTextColor(Color.rgb(0,153,0));
+        }
+
+        if (bean.minn > 1.8){
+            viewHolder.minn.setTextColor(Color.RED);
+        }else {
+
+            viewHolder.minn.setTextColor(Color.rgb(0,153,0));
         }
 
         return view;
@@ -82,7 +90,8 @@ public class RealTimeAdapter extends BaseAdapter {
 
     class ViewHolder{
         public TextView time;
-        public TextView value;
+        public TextView maxn;
+        public TextView minn;
 
         //public RelativeLayout rl;
 

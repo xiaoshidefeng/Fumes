@@ -86,7 +86,7 @@ public class MainAdapter extends BaseAdapter {
          * list 里面要传入两个value 一个用于显示 一个用于判断
          */
 
-        if (bean.fval > 2){
+        if (bean.fval > 1.8){
             viewHolder.value.setTextColor(Color.RED);
         }else {
             viewHolder.value.setTextColor(Color.rgb(0,153,0));

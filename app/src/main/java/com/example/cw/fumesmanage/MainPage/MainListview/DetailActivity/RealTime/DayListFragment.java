@@ -4,13 +4,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.cw.fumesmanage.R;
-import com.example.cw.fumesmanage.Tools.ChartDataMaker;
 import com.example.cw.fumesmanage.Tools.ConstClass;
 import com.example.cw.fumesmanage.Tools.NetWorkRealTime;
 import com.github.mikephil.charting.charts.LineChart;
@@ -34,6 +34,8 @@ public class DayListFragment extends Fragment {
     private String id;
 
     private LineChart mLineChart;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     private String[] s = {"微软","alibaba","腾讯","Baidu","微软","alibaba","腾讯","Baidu","腾讯","Baidu"
@@ -59,6 +61,8 @@ public class DayListFragment extends Fragment {
     }
     private void initview() {
         listView = (ListView)getActivity().findViewById(R.id.id_LVday);
+        mLineChart = (LineChart)getActivity().findViewById(R.id.id_Daychart);
+        swipeRefreshLayout = (SwipeRefreshLayout)getActivity().findViewById(R.id.id_RefreshDayList);
 
         SharedPreferences vals = getActivity().getSharedPreferences("EnterInfo", 0);
         id = vals.getString("id","");
@@ -68,17 +72,22 @@ public class DayListFragment extends Fragment {
             e.printStackTrace();
         }
 
-        ChartDataMaker cdm = new ChartDataMaker();
-        mLineChart = (LineChart)getActivity().findViewById(R.id.id_Daychart);
-        NetWorkRealTime netWorkRealTime = new NetWorkRealTime(itemBeen, listView, url, getContext(), mLineChart);
-        netWorkRealTime.enterprises();
 
-        chartMake();
+        itemBeen.clear();
+
+        NetWorkRealTime netWorkRealTime = new NetWorkRealTime(itemBeen, listView, url, getContext(), mLineChart, swipeRefreshLayout);
+        netWorkRealTime.initEnterprises();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                itemBeen.clear();
+                NetWorkRealTime netWorkRealTime = new NetWorkRealTime(itemBeen, listView, url, getContext(), mLineChart, swipeRefreshLayout);
+                netWorkRealTime.refreshEnterprises();
+            }
+        });
 
     }
 
-    private void chartMake() {
-
-    }
 
 }

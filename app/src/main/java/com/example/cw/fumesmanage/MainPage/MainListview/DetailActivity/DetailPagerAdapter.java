@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.AbNormalFragment.AbNormalFragment;
+import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.Monthly.MonthListFragment;
 import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime.DayListFragment;
 
 /**

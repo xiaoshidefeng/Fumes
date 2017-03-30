@@ -5,12 +5,18 @@
     android:orientation="vertical"
     android:background="@color/colorWithe">
 
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/id_RefreshDayList">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:divider="@color/colorGreen"
         android:dividerHeight="2px"
         android:id="@+id/id_LVday"></ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/id_Daychart"
