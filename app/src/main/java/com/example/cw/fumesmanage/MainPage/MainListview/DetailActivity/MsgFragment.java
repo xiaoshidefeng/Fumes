@@ -1,6 +1,7 @@
 package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +40,9 @@ public class MsgFragment extends Fragment {
     private TextView TVOpenTime;
     private TextView TVLinkStatus;
     private TextView TvArea;
+    private TextView TvManage;
+    private TextView TVManagePhone;
+    private TextView TvHoodId;
 
     private String EnterArea;
     private String Id;
@@ -54,6 +58,12 @@ public class MsgFragment extends Fragment {
     private int hood_id;
     private String created_at;
     private String updated_at;
+    private String run;
+    private String startTime;
+    private String manage;
+    private String managePhone;
+    private String state;
+    private String communication;
 
     private ProgressBar progressBar;
 
@@ -92,7 +102,11 @@ public class MsgFragment extends Fragment {
         TVOpenTime = (TextView)getActivity().findViewById(R.id.id_TVOpenTime);
         TVLinkStatus = (TextView)getActivity().findViewById(R.id.id_TVContactStatus);
         TvArea = (TextView)getActivity().findViewById(R.id.id_TvArea);
+        TvManage = (TextView)getActivity().findViewById(R.id.id_TvManager);
+        TVManagePhone = (TextView)getActivity().findViewById(R.id.id_TvManagerPhone);
+        TvHoodId = (TextView)getActivity().findViewById(R.id.id_TvHoodId);
         progressBar = (ProgressBar)getActivity().findViewById(R.id.id_ProgressBarDetail);
+
         SharedPreferences vals = getActivity().getSharedPreferences("EnterInfo", 0);
         Id = vals.getString("id","");
 
@@ -113,12 +127,37 @@ public class MsgFragment extends Fragment {
             TvName.setText(name);
             TvTime.setText(updated_at);
             TvValue.setText(fval+"mg/m³");
-            TvHoodStatus.setText("正常");
-            TVSeeStatus.setText("正常");
-            TVOpenTime.setText(created_at);
-            TVLinkStatus.setText("正常");
+            TvHoodStatus.setText(run);
+            TVSeeStatus.setText(state);
+            TVOpenTime.setText(startTime);
+            TVLinkStatus.setText(communication);
             TvArea.setText(province+city+area);
+            TvManage.setText(manage);
+            TVManagePhone.setText(managePhone);
+            TvHoodId.setText(hood_id+"");
+            if(run.equals("已运行")){
+                TvHoodStatus.setTextColor(Color.rgb(0,153,0));
+            }else {
+                TvHoodStatus.setTextColor(Color.RED);
+            }
+
+            if(state.equals("未超标")){
+                TVSeeStatus.setTextColor(Color.rgb(0,153,0));
+                TvValue.setTextColor(Color.rgb(0,153,0));
+            }else {
+                TVSeeStatus.setTextColor(Color.RED);
+                TvValue.setTextColor(Color.RED);
+            }
+
+            if(communication.equals("通讯正常")){
+                TVLinkStatus.setTextColor(Color.rgb(0,153,0));
+            }else {
+                TVLinkStatus.setTextColor(Color.RED);
+            }
+
+
             progressBar.setVisibility(View.GONE);
+
         }
     };
 
@@ -171,6 +210,12 @@ public class MsgFragment extends Fragment {
                     hood_id = oneEnterPrises.getInt("hood_id");
                     created_at = oneEnterPrises.getString("created_at");
                     updated_at = oneEnterPrises.getString("updated_at");
+                    run = oneEnterPrises.getString("run");
+                    startTime = oneEnterPrises.getString("starttime");
+                    manage = oneEnterPrises.getString("manager");
+                    managePhone = oneEnterPrises.getString("phone");
+                    state = oneEnterPrises.getString("state");
+                    communication = oneEnterPrises.getString("communication");
 
                     handler3();
 

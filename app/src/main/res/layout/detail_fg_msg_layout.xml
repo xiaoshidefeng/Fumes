@@ -63,6 +63,62 @@
             android:id="@+id/id_TvName"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="油烟机编号："
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:id="@+id/id_TvHoodId"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="负责人："
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:id="@+id/id_TvManager"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="负责人电话："
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:id="@+id/id_TvManagerPhone"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -143,33 +199,13 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="油烟机状态："/>
+            android:text="浓度是否超标："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/colorGreen"
-            android:text="正常"
-            android:id="@+id/id_TVFumesStatus"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorBlack"
-            android:text="监测状态："/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorGreen"
-            android:text="运行"
+            android:text=""
             android:id="@+id/id_TVSeeStatus"/>
     </LinearLayout>
 
@@ -183,14 +219,14 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="运行开始时间："/>
+            android:text="油烟机状态："/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/colorBlack"
-            android:text="2017-03-03 12:00"
-            android:id="@+id/id_TVOpenTime"/>
+            android:textColor="@color/colorGreen"
+            android:text="正常"
+            android:id="@+id/id_TVFumesStatus"/>
     </LinearLayout>
 
     <LinearLayout
@@ -213,6 +249,25 @@
             android:id="@+id/id_TVContactStatus"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:text="运行开始时间："/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:text="2017-03-03 12:00"
+            android:id="@+id/id_TVOpenTime"/>
+    </LinearLayout>
 
         <ProgressBar
             android:layout_width="match_parent"

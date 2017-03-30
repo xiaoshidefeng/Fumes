@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime.RealTimeAdapter;
 import com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.RealTime.RealTimeBean;
@@ -85,6 +86,7 @@ public class NetWorkRealTime {
             RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
             NetWorkRealTime.this.listView.setAdapter(myAdapter);
             NetWorkRealTime.this.swipeRefreshLayout.setRefreshing(false);
+            Toast.makeText(NetWorkRealTime.this.context,"刷新完成",Toast.LENGTH_SHORT).show();
             RealChartMaker realChartMaker = new RealChartMaker(times, vals, NetWorkRealTime.this.lineChart);
             realChartMaker.makeChart();
         }

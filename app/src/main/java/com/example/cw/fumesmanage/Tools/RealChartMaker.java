@@ -49,7 +49,8 @@ public class RealChartMaker {
 //        // no description text
         lineChart.setDescription(null);// 数据描述
 //        // 如果没有数据的时候，会显示这个，类似listview的emtpyview
-//        lineChart.setNoDataTextDescription("You need to provide data for the chart.");
+        lineChart.setNoDataText("未取得数据");
+
 
         // enable / disable grid background
         lineChart.setDrawGridBackground(false); // 是否显示表格颜色
