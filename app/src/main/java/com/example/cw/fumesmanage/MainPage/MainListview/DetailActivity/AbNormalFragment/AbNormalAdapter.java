@@ -60,7 +60,6 @@ public class AbNormalAdapter extends BaseAdapter{
             viewHolder = new ViewHolder();
             view = mInflater.inflate(R.layout.detail_fg_abnormal_list_item_layout,null);
 
-
             viewHolder.title = (TextView)view.findViewById(R.id.id_TVListItemAbnormal);
             viewHolder.value = (TextView)view.findViewById(R.id.id_TVAbnormalValue);
             viewHolder.LL = (LinearLayout)view.findViewById(R.id.id_AbnormalLL);
@@ -69,7 +68,6 @@ public class AbNormalAdapter extends BaseAdapter{
         }else {
             viewHolder = (ViewHolder)view.getTag();
         }
-
 
         final AbNormalBean bean = mList.get(i);
         viewHolder.title.setText(bean.ItemTitle);

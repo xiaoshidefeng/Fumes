@@ -20,4 +20,10 @@ public class ConstClass {
 
     //月报表数据
     public final static String MONTH_CHART_VALUE = "http://120.25.90.170/monthly";
+
+    //用户名
+    public final static String USER_NAME = "user";
+
+    //密码
+    public final static String USER_PASSWORD = "123456";
 }
