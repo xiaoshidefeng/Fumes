@@ -7,12 +7,12 @@ package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity.AbNormal
 public class AbNormalBean {
     public int Id;
     public String ItemTitle;
-    public String ItemValue;
+    public double Value;
 
-    public AbNormalBean(int id, String itemTitle, String itemValue) {
+    public AbNormalBean(int id, String itemTitle, double value) {
         Id = id;
         ItemTitle = itemTitle;
-        ItemValue = itemValue;
+        Value = value;
     }
 
     public int getId() {

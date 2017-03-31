@@ -41,9 +41,9 @@ public class NetWorkRealTime {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private String[] times;
+    public static String[] dayTimes;
 
-    private double[] vals;
+    public static double[] dayVals;
 
     public NetWorkRealTime(List<RealTimeBean> realTimeBeanList
             , ListView listView, URL url, Context context, LineChart lineChart, SwipeRefreshLayout swipeRefreshLayout) {
@@ -68,7 +68,7 @@ public class NetWorkRealTime {
             RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
             NetWorkRealTime.this.listView.setAdapter(myAdapter);
 
-            RealChartMaker realChartMaker = new RealChartMaker(times, vals, NetWorkRealTime.this.lineChart);
+            RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
             realChartMaker.makeChart();
         }
     };
@@ -87,7 +87,7 @@ public class NetWorkRealTime {
             NetWorkRealTime.this.listView.setAdapter(myAdapter);
             NetWorkRealTime.this.swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(NetWorkRealTime.this.context,"刷新完成",Toast.LENGTH_SHORT).show();
-            RealChartMaker realChartMaker = new RealChartMaker(times, vals, NetWorkRealTime.this.lineChart);
+            RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
             realChartMaker.makeChart();
         }
     };
@@ -129,8 +129,8 @@ public class NetWorkRealTime {
 
                     JSONArray jsonArray = new JSONArray(response.toString());
 
-                    times = new String[jsonArray.length()];
-                    vals = new double[jsonArray.length()];
+                    dayTimes = new String[jsonArray.length()];
+                    dayVals = new double[jsonArray.length()];
 
                     for(int i = 0,count = 0; i < jsonArray.length(); i++,count++){
                         JSONObject oneEnterPrises = jsonArray.getJSONObject(i);
@@ -141,8 +141,8 @@ public class NetWorkRealTime {
                         int hood_id = oneEnterPrises.getInt("hood_id");
                         String created_at = oneEnterPrises.getString("created_at");
                         String updated_at = oneEnterPrises.getString("updated_at");
-                        times[count] = time;
-                        vals[count] = fval;
+                        dayTimes[count] = time;
+                        dayVals[count] = fval;
                         NetWorkRealTime.this.realTimeBeanList.add(new RealTimeBean(
                                 id,
                                 hood_id,
@@ -200,8 +200,8 @@ public class NetWorkRealTime {
 
                     JSONArray jsonArray = new JSONArray(response.toString());
 
-                    times = new String[jsonArray.length()];
-                    vals = new double[jsonArray.length()];
+                    dayTimes = new String[jsonArray.length()];
+                    dayVals = new double[jsonArray.length()];
 
                     for(int i = 0,count = 0; i < jsonArray.length(); i++,count++){
                         JSONObject oneEnterPrises = jsonArray.getJSONObject(i);
@@ -212,8 +212,8 @@ public class NetWorkRealTime {
                         int hood_id = oneEnterPrises.getInt("hood_id");
                         String created_at = oneEnterPrises.getString("created_at");
                         String updated_at = oneEnterPrises.getString("updated_at");
-                        times[count] = time;
-                        vals[count] = fval;
+                        dayTimes[count] = time;
+                        dayVals[count] = fval;
                         NetWorkRealTime.this.realTimeBeanList.add(new RealTimeBean(
                                 id,
                                 hood_id,
