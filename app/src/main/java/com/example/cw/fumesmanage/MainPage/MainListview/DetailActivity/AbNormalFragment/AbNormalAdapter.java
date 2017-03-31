@@ -83,53 +83,29 @@ public class AbNormalAdapter extends BaseAdapter{
                         //.setIcon(R.drawable.icon)
                         .setTitle("处理")
                         .setMessage("如何处理" + "\n油烟值：" + bean.Value + "mg/m³")
+                        .setNeutralButton("关闭", null)
+                        .setPositiveButton("电话通知", new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(view.getContext(), "电话通知处理", Toast.LENGTH_SHORT).show();
+                            }
+
+                        })
                         .setNegativeButton("现场处理", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Toast.makeText(view.getContext(), "准备前往现场处理", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .setPositiveButton("电话通知", new DialogInterface.OnClickListener(){
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // TODO Auto-generated method stub
-                                //Log.v(TAG,"你点击了确定");
-                                //activity finish
-                                //finish();
-                                Toast.makeText(view.getContext(), "电话通知处理", Toast.LENGTH_SHORT).show();
-                            }
-
-                        })
                         .show();
 
 
-//                Toast.makeText(view.getContext(),bean.ItemTitle,Toast.LENGTH_SHORT).show();
 
             }
         });
 
-//        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("postInfo",
-//                        Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("maintitle",bean.ItemTitle);
-//                editor.putString("postone",bean.RawConten);
-//                editor.putInt("postid",bean.getId());
-//                editor.putString("userheadimg",bean.getUserImgUrl());
-//                editor.putString("username",bean.ItemName);
-//                editor.putString("creattime",bean.ItemCreatTime);
-//                editor.commit();
-//
-//                Intent intent = new Intent(view.getContext(), PostActivity.class);
-//                view.getContext().startActivity(intent);
-//            }
-//        });
-
         return view;
-
 
     }
 
