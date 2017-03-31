@@ -1,16 +1,20 @@
 package com.example.cw.fumesmanage.MainPage.MainListview.DetailActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +28,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
 /**
  * Created by cw on 2017/3/24.
@@ -49,13 +55,18 @@ public class OnSiteFragment extends Fragment {
         take_picture=(Button)getActivity().findViewById(R.id.id_BtnTakePhoto);
         btnUpDate=(Button)getActivity().findViewById(R.id.id_BtnUpPhoto);
         editText = (EditText)getActivity().findViewById(R.id.id_etfeedbackcontent);
+        if (!(checkSelfPermission(OnSiteFragment.this.getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)) {
+            requestCameraPermission();
+        }
 
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         take_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 startActivityForResult(intent, Activity.DEFAULT_KEYS_DIALER);
+
             }
         });
 
@@ -154,5 +165,21 @@ public class OnSiteFragment extends Fragment {
 
             };
         }.start();
+    }
+
+
+    private static final int REQUEST_PERMISSION_CAMERA_CODE = 1;
+    private void requestCameraPermission() {
+        requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION_CAMERA_CODE) {
+            int grantResult = grantResults[0];
+            boolean granted = grantResult == PackageManager.PERMISSION_GRANTED;
+            Log.i("eeee", "onRequestPermissionsResult granted=" + granted);
+        }
     }
 }

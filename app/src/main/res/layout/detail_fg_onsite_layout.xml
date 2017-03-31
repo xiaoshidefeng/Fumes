@@ -9,17 +9,34 @@
     <!--<ScrollView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:hint="处理说明..."
-            android:textColorHint="@color/text_gray"
-            android:gravity="top"
-            android:id="@+id/id_etfeedbackcontent"
-            android:textColor="@color/colorBlack"
-            android:background="@null"
-            />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="当前油烟值"
+        android:textColorHint="@color/text_gray"
+        android:gravity="top"
+        android:id="@+id/id_etValue"
+        android:textColor="@color/colorBlack"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:hint="处理说明..."
+        android:textColorHint="@color/text_gray"
+        android:gravity="top"
+        android:id="@+id/id_etfeedbackcontent"
+        android:textColor="@color/colorBlack"
+        android:background="@null"
+        />
 
     <ImageView
         android:layout_width="match_parent"
@@ -44,6 +61,7 @@
             android:text="上传"
             android:id="@+id/id_BtnUpPhoto"/>
     </LinearLayout>
-
+    </LinearLayout>
+    </ScrollView>
     <!--</ScrollView>-->
 </LinearLayout>

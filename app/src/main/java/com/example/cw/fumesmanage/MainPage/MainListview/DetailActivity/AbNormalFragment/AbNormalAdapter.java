@@ -82,9 +82,14 @@ public class AbNormalAdapter extends BaseAdapter{
                 new AlertDialog.Builder(view.getContext())
                         //.setIcon(R.drawable.icon)
                         .setTitle("处理")
-                        .setMessage("是否处理" + "\n油烟值：" + bean.Value + "mg/m³")
-                        .setNegativeButton("不处理",null)
-                        .setPositiveButton("处理", new DialogInterface.OnClickListener(){
+                        .setMessage("如何处理" + "\n油烟值：" + bean.Value + "mg/m³")
+                        .setNegativeButton("现场处理", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(view.getContext(), "准备前往现场处理", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setPositiveButton("电话通知", new DialogInterface.OnClickListener(){
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -92,7 +97,7 @@ public class AbNormalAdapter extends BaseAdapter{
                                 //Log.v(TAG,"你点击了确定");
                                 //activity finish
                                 //finish();
-                                Toast.makeText(view.getContext(), "处理成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "电话通知处理", Toast.LENGTH_SHORT).show();
                             }
 
                         })
