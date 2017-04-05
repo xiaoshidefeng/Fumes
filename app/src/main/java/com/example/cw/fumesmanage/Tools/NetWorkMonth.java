@@ -40,6 +40,8 @@ public class NetWorkMonth {
     private double[] minnDoubles;
     private String[] times;
 
+    JSONArray jsonArray;
+
     public NetWorkMonth(Context context, String id, ListView listView
             , LineChart lineChart, List<MonthListBean> monthListBeanList) {
         this.context = context;
@@ -60,13 +62,16 @@ public class NetWorkMonth {
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            MonthAdapter myAdapter = new MonthAdapter(NetWorkMonth.this.context,NetWorkMonth.this.monthListBeanList);
-            NetWorkMonth.this.listView.setAdapter(myAdapter);
+            if(jsonArray.length()!=0){
+                MonthAdapter myAdapter = new MonthAdapter(NetWorkMonth.this.context,NetWorkMonth.this.monthListBeanList);
+                NetWorkMonth.this.listView.setAdapter(myAdapter);
 
 //            RealChartMaker realChartMaker = new RealChartMaker(times, vals, NetWorkRealTime.this.lineChart);
 //            realChartMaker.makeChart();
-            MonthChartMaker monthChartMaker = new MonthChartMaker(times, maxxDoubles, minnDoubles, NetWorkMonth.this.lineChart);
-            monthChartMaker.makeChart();
+                MonthChartMaker monthChartMaker = new MonthChartMaker(times, maxxDoubles, minnDoubles, NetWorkMonth.this.lineChart);
+                monthChartMaker.makeChart();
+            }
+
         }
     };
 
@@ -82,8 +87,10 @@ public class NetWorkMonth {
                     Calendar c = Calendar.getInstance();
                     String year = String.valueOf(c.get(Calendar.YEAR));
 
-                    String month = String.valueOf(c.get(Calendar.MONTH)+1);
+                    //暂时改成3月份 4月还没有数据
+                    String month = String.valueOf(c.get(Calendar.MONTH));
 
+//                    String month = String.valueOf(c.get(Calendar.MONTH)+1);
                     URL url = new URL(ConstClass.MONTH_CHART_VALUE);
 
 
@@ -119,7 +126,7 @@ public class NetWorkMonth {
                             response.append(line);
                         }
 
-                        JSONArray jsonArray =new JSONArray(response.toString());
+                        jsonArray =new JSONArray(response.toString());
 
                         maxxDoubles = new double[jsonArray.length()];
                         minnDoubles = new double[jsonArray.length()];

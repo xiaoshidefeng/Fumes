@@ -22,7 +22,7 @@ public class ConstClass {
     public final static String MONTH_CHART_VALUE = "http://120.25.90.170/monthly";
 
     //用户名
-    public final static String USER_NAME = "user";
+    public final static String USER_NAME = "执法人员01";
 
     //密码
     public final static String USER_PASSWORD = "123456";

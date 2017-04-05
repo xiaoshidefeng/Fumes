@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -59,9 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         System.out.print("123123"+name+password);
         if(name.equals(ConstClass.USER_NAME)&&password.equals(ConstClass.USER_PASSWORD)){
             if(autoLogin){
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if(!isNetworkAvailable(LoginActivity.this)){
+                    Toast.makeText(LoginActivity.this, "网络未连接", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
             if(rememberPass){
                 etUsername.setText(name);
@@ -69,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         }
+        etUsername.setText("执法人员01");
+
 
         btnLogin = (Button)findViewById(R.id.id_BtnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 autoLogin = CbAuto.isChecked();
 
 
-                if(name.equals(ConstClass.USER_NAME)&&password.equals(ConstClass.USER_PASSWORD)){
+                if(name.equals(ConstClass.USER_NAME)&&password.equals(ConstClass.USER_PASSWORD)&&isNetworkAvailable(LoginActivity.this)){
                     SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences("LoginInfo",
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -103,7 +113,9 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }else {
+                }else if(!isNetworkAvailable(LoginActivity.this)){
+                    Toast.makeText(LoginActivity.this, "网络未连接", Toast.LENGTH_SHORT).show();
+                } else{
                     Toast.makeText(LoginActivity.this, "用戶名或密码错误", Toast.LENGTH_SHORT).show();
                 }
 
@@ -143,5 +155,24 @@ public class LoginActivity extends AppCompatActivity {
 
             };
         }.start();
+    }
+
+    //判断当前网络是否可用
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (info != null && info.isConnected())
+            {
+                // 当前网络是连接的
+                if (info.getState() == NetworkInfo.State.CONNECTED)
+                {
+                    // 当前所连接的网络可用
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
