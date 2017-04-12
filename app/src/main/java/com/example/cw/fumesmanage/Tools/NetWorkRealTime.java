@@ -45,6 +45,8 @@ public class NetWorkRealTime {
 
     public static double[] dayVals;
 
+    private JSONArray jsonArray;
+
     public NetWorkRealTime(List<RealTimeBean> realTimeBeanList
             , ListView listView, URL url, Context context, LineChart lineChart, SwipeRefreshLayout swipeRefreshLayout) {
         this.realTimeBeanList = realTimeBeanList;
@@ -65,11 +67,14 @@ public class NetWorkRealTime {
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
-            NetWorkRealTime.this.listView.setAdapter(myAdapter);
+            if(jsonArray.length()>0){
+                RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
+                NetWorkRealTime.this.listView.setAdapter(myAdapter);
 
-            RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
-            realChartMaker.makeChart();
+                RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
+                realChartMaker.makeChart();
+            }
+
         }
     };
 
@@ -83,12 +88,16 @@ public class NetWorkRealTime {
     private Handler handler2 = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
-            NetWorkRealTime.this.listView.setAdapter(myAdapter);
+
             NetWorkRealTime.this.swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(NetWorkRealTime.this.context,"刷新完成",Toast.LENGTH_SHORT).show();
-            RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
-            realChartMaker.makeChart();
+            if(jsonArray.length()>0){
+                RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
+                NetWorkRealTime.this.listView.setAdapter(myAdapter);
+                RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
+                realChartMaker.makeChart();
+            }
+
         }
     };
 
@@ -127,7 +136,7 @@ public class NetWorkRealTime {
                     }
 
 
-                    JSONArray jsonArray = new JSONArray(response.toString());
+                    jsonArray = new JSONArray(response.toString());
 
                     dayTimes = new String[jsonArray.length()];
                     dayVals = new double[jsonArray.length()];
@@ -225,7 +234,6 @@ public class NetWorkRealTime {
                     }
                     handler5();
 
-                    //TODO
 
                 }   catch (Exception e) {
                     Log.e("errss", e.getMessage());
