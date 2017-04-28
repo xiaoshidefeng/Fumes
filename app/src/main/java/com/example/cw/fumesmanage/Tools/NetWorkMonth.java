@@ -62,7 +62,7 @@ public class NetWorkMonth {
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if(jsonArray.length()!=0){
+            if(jsonArray != null){
                 MonthAdapter myAdapter = new MonthAdapter(NetWorkMonth.this.context,NetWorkMonth.this.monthListBeanList);
                 NetWorkMonth.this.listView.setAdapter(myAdapter);
 
@@ -88,7 +88,8 @@ public class NetWorkMonth {
                     String year = String.valueOf(c.get(Calendar.YEAR));
 
                     //暂时改成3月份 4月还没有数据
-                    String month = String.valueOf(c.get(Calendar.MONTH));
+                    //改回当月
+                    String month = String.valueOf(c.get(Calendar.MONTH)+1);
 
 //                    String month = String.valueOf(c.get(Calendar.MONTH)+1);
                     URL url = new URL(ConstClass.MONTH_CHART_VALUE);

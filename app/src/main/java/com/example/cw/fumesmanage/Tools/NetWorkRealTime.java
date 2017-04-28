@@ -67,7 +67,7 @@ public class NetWorkRealTime {
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if(jsonArray.length()>0){
+            if(jsonArray!=null){
                 RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
                 NetWorkRealTime.this.listView.setAdapter(myAdapter);
 
@@ -91,7 +91,7 @@ public class NetWorkRealTime {
 
             NetWorkRealTime.this.swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(NetWorkRealTime.this.context,"刷新完成",Toast.LENGTH_SHORT).show();
-            if(jsonArray.length()>0){
+            if(jsonArray!=null){
                 RealTimeAdapter myAdapter = new RealTimeAdapter(NetWorkRealTime.this.context,NetWorkRealTime.this.realTimeBeanList);
                 NetWorkRealTime.this.listView.setAdapter(myAdapter);
                 RealChartMaker realChartMaker = new RealChartMaker(dayTimes, dayVals, NetWorkRealTime.this.lineChart);
@@ -207,7 +207,7 @@ public class NetWorkRealTime {
                     }
 
 
-                    JSONArray jsonArray = new JSONArray(response.toString());
+                    jsonArray = new JSONArray(response.toString());
 
                     dayTimes = new String[jsonArray.length()];
                     dayVals = new double[jsonArray.length()];

@@ -34,6 +34,8 @@ public class NetWorkGo {
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    private JSONArray jsonArray;
+
     public NetWorkGo(URL url, List<MainItemBean> listMainItemBean, ListView listView, Context context) {
         this.url = url;
         this.listMainItemBean = listMainItemBean;
@@ -61,8 +63,12 @@ public class NetWorkGo {
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            MainAdapter myAdapter = new MainAdapter(NetWorkGo.this.context,NetWorkGo.this.listMainItemBean);
-            listView.setAdapter(myAdapter);
+
+            if(jsonArray != null){
+                MainAdapter myAdapter = new MainAdapter(NetWorkGo.this.context,NetWorkGo.this.listMainItemBean);
+                listView.setAdapter(myAdapter);
+            }
+
         }
     };
 
@@ -76,8 +82,12 @@ public class NetWorkGo {
     private Handler handler3 = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            MainAdapter myAdapter = new MainAdapter(NetWorkGo.this.context,NetWorkGo.this.listMainItemBean);
-            listView.setAdapter(myAdapter);
+
+            if(jsonArray != null){
+                MainAdapter myAdapter = new MainAdapter(NetWorkGo.this.context,NetWorkGo.this.listMainItemBean);
+                listView.setAdapter(myAdapter);
+            }
+
 
             NetWorkGo.this.swipeRefreshLayout.setRefreshing(false);
 
@@ -120,7 +130,7 @@ public class NetWorkGo {
                         response.append(line);
                     }
 
-                    JSONArray jsonArray = new JSONArray(response.toString());
+                    jsonArray = new JSONArray(response.toString());
 
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject oneEnterPrises = jsonArray.getJSONObject(i);
@@ -201,7 +211,7 @@ public class NetWorkGo {
                         response.append(line);
                     }
 
-                    JSONArray jsonArray = new JSONArray(response.toString());
+                    jsonArray = new JSONArray(response.toString());
 
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject oneEnterPrises = jsonArray.getJSONObject(i);
